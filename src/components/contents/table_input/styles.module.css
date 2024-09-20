@@ -1,0 +1,9 @@
+.container {
+    height: 100%;
+}
+
+.container input {
+    border: none;
+    outline: none;
+    height: 100%;
+}

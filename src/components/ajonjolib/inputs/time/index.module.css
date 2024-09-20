@@ -1,0 +1,12 @@
+.container {
+
+}
+
+.container input[type='time'] {
+    outline: none;
+    border: 1px #E2E5F4 solid;
+    border-radius: 10px;
+    color: #737373;
+    background-color: #F4F6FB;
+    padding: 8px 12px;
+}

@@ -1,0 +1,41 @@
+.container {
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    cursor: text;
+    color: #6B768C;
+    overflow-x: hidden;
+    font-size: 20px;
+}
+
+.container input[type='text'],
+.container input[type='password'] {
+    background-color: #F4F6FB;
+    border: 1px solid #E2E5F4;
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 14px;
+    outline: none;
+    color: #737373;
+    line-height: 29px;
+    text-align: left;
+}
+
+.input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: text;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    color: #000;
+}
+
+.searchIcon {
+    cursor: pointer;
+}
