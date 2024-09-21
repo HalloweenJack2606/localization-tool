@@ -2,6 +2,8 @@ import React, {useContext, useState} from 'react';
 import ProjectContext from "../../context/project";
 import TableInput from "./table_input";
 import styles from './styles.module.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEllipsis, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 function TableHeader({project}) {
     return (
@@ -39,7 +41,7 @@ function Entries({project, rows}) {
                     <tr key={rowIndex}>
                         {project?.columns?.map((column, index) => {
                             if (!column?.enabled) return null;
-                            if(column.name === '#') return rowIndex + 1;
+                            if(column.name === '#') return (<td key={index} className={styles.idColumn}>{rowIndex + 1}</td>);
                             const data = row[column.internal]?.data;
                             return (
                                 <td key={index}><TableInput data={data} setData={modifyEntry}/></td>
@@ -56,11 +58,15 @@ function NewEntry({project, rows}) {
     return (
         <tr>
             {project?.columns?.map((column, index) => {
-                if (!column?.enabled) return null;
-                if(column.name === '#') return rows.length + 1;
+                if(column.name !== '#') return null
                 return (
-                    <td key={index}><TableInput/></td>
-                )
+                    <td key={index} className={styles.idColumn}>
+                        <div className={styles.newButton}>
+                            <div style={{paddingBottom: '5px'}}>+</div>
+                            <div><FontAwesomeIcon icon={faEllipsis} size={"xs"}/></div>
+                        </div>
+                    </td>
+                );
             })}
         </tr>
     )

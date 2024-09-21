@@ -5,3 +5,9 @@
 .App {
   text-align: center;
 }
+
+html,
+body,
+#root {
+  background-color: rgb(246, 248, 250);
+}
