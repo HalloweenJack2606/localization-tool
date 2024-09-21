@@ -2,13 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 16px;
     text-align: left;
     background-color: rgb(246, 248, 250);
+    overflow-x: scroll;
 }
 
 .container table {
-    background-color: #FFFFFF;
+    background-color: rgb(244, 245, 247);
+}
+
+.container thead th {
+    border: 1px solid gainsboro;
+}
+
+.container thead tr {
+    background-color: rgb(244, 245, 247);
 }
 
 .container tbody tr:hover {
@@ -20,16 +29,13 @@
     min-height: 100px;
     height: 100px;
     min-width: 250px;
+    background-color: #FFFFFF;
 }
 
 .container td:first-child {
     border-left: none;
     min-width: auto;
     text-align: center;
-}
-
-.container td:last-child {
-    border-right: none;
 }
 
 .idColumn {
@@ -72,16 +78,41 @@
 }
 
 .filterInput {
-    font-size: 24px;
+    background-color: #FFFFFF;
+    border: 1px solid gainsboro;
+}
+
+.filterInput input {
+    font-size: 16px;
     background-color: rgb(246, 248, 250);
     border-radius: 8px;
     border: 1px solid gainsboro;
     outline: none;
-    margin: 8px;
+    margin: 4px;
     padding-left: 8px;
     width: 180px;
 }
 
-.filterInput:focus {
+.filterInput input:focus {
     border: 1px solid var(--main-color);
+}
+
+.newColumn {
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+    height: 100%;
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: -1px;
+    border-left: none !important;
+}
+
+.columnDesc {
+    font-size: 12px;
+    color: #AAA;
+    margin-right: 4px;
 }

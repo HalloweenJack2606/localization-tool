@@ -4,11 +4,13 @@ import Modal from "../../../ajonjolib/modal/modal/modal";
 import {Label, Text, Button} from "../../../ajonjolib/inputs/ajonjolinput";
 import LanguageSelect from "../../../ajonjolib/inputs/language_select";
 import {defaultColumns} from "../../../../utils/table_utils";
+import languages from "../../../ajonjolib/inputs/language_select/data/lang-flags.json";
 
 export default function CreateProjectModal() {
     const [isOpen, setIsOpen] = useState(false);
     const [form, setForm] = useState({
-        columns: defaultColumns
+        columns: defaultColumns,
+        languages: []
     });
 
     useEffect(() => {
@@ -19,7 +21,13 @@ export default function CreateProjectModal() {
     }, []);
 
     const createProject = () => {
-        localStorage.setItem("project", JSON.stringify(form));
+        const project = {...form};
+
+        project.source_language = {
+            name: languages[form?.source_language].nameEnglish,
+            value: form.source_language,
+        }
+        localStorage.setItem("project", JSON.stringify(project));
 
         window.location.reload();
     }

@@ -1,5 +1,6 @@
 .container {
     height: 100%;
+    display: flex;
 }
 
 .container div {
@@ -12,4 +13,18 @@
     border: none;
     outline: none;
     height: 100%;
+}
+
+.alertPill {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alertPill div {
+    margin: 0 10px 0 3px;
+    max-height: 90%;
+    width: 4px;
+    border-radius: 4px;
 }

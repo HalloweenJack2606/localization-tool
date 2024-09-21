@@ -124,7 +124,7 @@ export default function LanguageSelect({ searchable, value, onChange, placeholde
             >
                 <div style={{ display: 'flex', width: '100%' }}>
                     <div>
-                        {(selectedOptionNames.length > 0 ? currentSelection() : (!searchable && 'Select an option'))}
+                        {(selectedOptionNames.length > 0 ? currentSelection() : (!searchable && 'Select a Language'))}
                     </div>
                     {searchable && (
                         <input

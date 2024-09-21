@@ -5,25 +5,42 @@ import styles from './styles.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
 import {defaultRow} from "../../utils/table_utils";
+import {openModal} from "../ajonjolib/toasts/toast/toast";
 
 function TableHeader({project, setFilters, filters}) {
     return (
         <React.Fragment>
             <tr>
                 {project?.columns?.map((column, index) => {
-                    if (!column?.enabled) return null;
                     return (
-                        <th key={index}>{column.name}</th>
+                        <th key={index}>
+                            <div className={'d-flex align-items-center'}>
+                                {column.value === 5 && <div className={`lang-icon lang-icon-${column?.flag_icon} me-1`}></div>}
+                                {column.value === 2 && <div className={`lang-icon lang-icon-${project?.source_language?.value} me-1`}></div>}
+                                {column.value === 2 ?
+                                    <div className={`d-flex align-items-center`}>
+                                        <div className={styles.columnDesc}>(Source {project?.source_language?.value})</div>
+                                        <div>{project?.source_language?.name}</div>
+                                    </div> :
+                                    (column.value === 5 ?
+                                        <div className={`d-flex align-items-center`}>
+                                            <div className={styles.columnDesc}>(Target {column?.flag_icon})</div>
+                                            <div>{column?.name}</div>
+                                        </div> :
+                                        <div>{column.name}</div>)
+                                }
+                            </div>
+                        </th>
                     )
                 })}
+                <th className={styles.newColumn} onClick={() => openModal('add_column')}>+</th>
             </tr>
             <tr>
                 {project?.columns?.map((column, index) => {
-                    if (!column?.enabled) return null;
-                    if(column.name === "#") return <th key={index}/>;
+                    if(column.name === "#") return <th key={index} className={styles.filterInput}/>;
                     return (
-                        <th key={index}>
-                            <input className={styles.filterInput} placeholder={'Type to filter...'} value={filters[column.internal]} onChange={(event) => {
+                        <th key={index} className={styles.filterInput}>
+                            <input placeholder={'Type to filter...'} value={filters[column.internal]} onChange={(event) => {
                                 setFilters({...filters, [column.internal]: event.target.value});
                             }}/>
                         </th>
@@ -41,7 +58,6 @@ function Entries({project, rows, setRows, filteredRows}) {
                 return (
                     <tr key={rowIndex}>
                         {project?.columns?.map((column, index) => {
-                            if (!column?.enabled) return null;
                             if(column.name === '#') return (<td key={index} className={styles.idColumn}>{rowIndex + 1}</td>);
                             const data = row[column.internal]?.data;
                             return (
@@ -98,7 +114,7 @@ export default function Contents() {
 
     useEffect(() => {
         const retrievedRows = JSON.parse(localStorage.getItem('rows'));
-        if(retrievedRows.length > 0) {
+        if(retrievedRows) {
             setRows(retrievedRows);
         }
     }, []);

@@ -4,6 +4,7 @@ import ProjectContext from "../../context/project";
 import ProjectCreation from "../../components/project/creation";
 import CreateProjectModal from "../../components/project/modals/create_project";
 import Contents from "../../components/contents";
+import AddColumnModal from "../../components/contents/add_column";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <div>
             <Header/>
             <CreateProjectModal/>
+            <AddColumnModal/>
             {project ? <Contents/> : <ProjectCreation/>}
         </div>
     );
