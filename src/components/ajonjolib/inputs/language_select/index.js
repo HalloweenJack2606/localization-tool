@@ -48,9 +48,7 @@ export default function LanguageSelect({ searchable, value, onChange, placeholde
     const toggleOption = (optionValue, optionName) => {
         setSearchTerm('');
 
-        if (optionValue === 'selectAll') {
-            const allOptionValues = languageOptions.map(option => option.value);
-        } else if (multi) {
+        if (multi) {
             const index = selectedOptionValues.indexOf(optionValue);
             if (index === -1) {
                 const newValues = [...selectedOptionValues, optionValue];

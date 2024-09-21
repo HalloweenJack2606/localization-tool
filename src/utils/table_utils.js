@@ -6,6 +6,14 @@ const defaultColumns = [
     { name: "Path", internal: "path", enabled: true, type: "text" }
 ];
 
+const defaultRow = {
+    string_id: { data: "", last_modified: Date.now() },
+    lang_src: { data: "", last_modified: Date.now() },
+    char_limit: { data: "", last_modified: Date.now() },
+    path: { data: "", last_modified: Date.now() }
+};
+
 export {
     defaultColumns,
+    defaultRow
 }

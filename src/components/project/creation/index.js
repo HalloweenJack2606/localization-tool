@@ -17,7 +17,7 @@ export default function ProjectCreation() {
                 <div>Create Project</div>
             </div>
             <div className={'my-2'}>or</div>
-            <div className={styles.button}>
+            <div className={styles.button} onClick={importProject}>
                 <div>Import Project</div>
             </div>
         </div>

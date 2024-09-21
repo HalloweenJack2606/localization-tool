@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import styles from './styles.module.css';
 import ProjectContext from "../../context/project";
 

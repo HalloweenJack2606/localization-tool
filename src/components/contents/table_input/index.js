@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./styles.module.css";
 
-export default function TableInput({data, setData}) {
+export default function TableInput({data, rows, setRows, index, column}) {
     const [value, setValue] = useState(data);
     const [isSelected , setIsSelected] = useState(false);
     const divRef = useRef(null);
@@ -17,9 +17,23 @@ export default function TableInput({data, setData}) {
     const handleOutsideClick = (event) => {
         if (divRef.current && !divRef.current.contains(event.target)) {
             setIsSelected(false);
-            if(setData) setData(value);
         }
     }
+
+    useEffect(() => {
+        if(!(rows || setRows || index || column || data)) return;
+        const updatedRows = [...rows];
+        updatedRows[index] = {
+            ...updatedRows[index],
+            [column.internal]: {
+                ...updatedRows[index][column.internal],
+                data: value,
+                last_modified: Date.now()
+            }
+        };
+        setRows(updatedRows);
+        localStorage.setItem('rows', JSON.stringify(updatedRows));
+    }, [value])
 
     const select = () => {
         setIsSelected(true);
@@ -30,9 +44,9 @@ export default function TableInput({data, setData}) {
         <div className={styles.container} ref={divRef} onClick={select}>
             {isSelected ? (
                     <div style={{ display: 'flex', width: '100%', height: '100%' }}>
-                        <input value={value} onInput={(event) => {
+                        <input value={value} min={0} step={1} onInput={(event) => {
                             setValue(event.target.value);
-                        }} type={'text'}/>
+                        }} type={column.type}/>
                     </div>) :
                 <div>{data}</div>
             }
