@@ -44,7 +44,7 @@
 }
 
 .newButton {
-    margin: 4px;
+    margin: 4px 4px 4px 12px;
     border-radius: 4px;
     border: 1px solid gainsboro;
     background-color: #FFFFFF;
@@ -64,10 +64,6 @@
     align-items: center;
     width: 80px;
     height: 60px;
-
-}
-
-.newButton div:first-child {
 }
 
 .newButton div:last-child {

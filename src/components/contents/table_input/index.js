@@ -34,15 +34,19 @@ export default function TableInput({data, rows, setRows, index, column}) {
         };
         setRows(updatedRows);
         localStorage.setItem('rows', JSON.stringify(updatedRows));
+    }, [value])
 
+    useEffect(() => {
         if(column.internal.toLowerCase().includes("dst")) {
-            if(value === "" || value === null) {
+            if(value === "" || value === null || value === undefined) {
                 setPillColor("red");
+            } else if(rows[index].lang_src.last_modified > rows[index][column.internal]?.last_modified) {
+                setPillColor("gold");
             } else setPillColor("green");
         } else {
             setPillColor("transparent");
         }
-    }, [value])
+    }, [rows]);
 
     const select = () => {
         setIsSelected(true);
